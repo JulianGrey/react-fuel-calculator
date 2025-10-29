@@ -16,7 +16,7 @@
  * @param {number} fuelPerLap How much fuel is required to complete one lap
  * @param {RaceDuration} raceDuration How long the race will run
  * @param {LapTime} timePerLap How long it takes to complete a lap
- * @returns {{numLaps: number, raceFuel: number}}
+ * @returns {{maxNumLaps: number, raceFuel: number}}
  */
 function calculateFuelForRace(
   fuelPerLap,
@@ -27,11 +27,11 @@ function calculateFuelForRace(
   const { lapMinutes = 0, lapSeconds = 0 } = timePerLap
   const duration = (raceHours * 3600) + (raceMinutes * 60) + raceSeconds
   const lapTime = (lapMinutes * 60) + lapSeconds
-  const numLaps = (duration / lapTime)
-  const raceFuel = (numLaps * fuelPerLap)
+  const maxNumLaps = Math.ceil(duration / lapTime)
+  const raceFuel = (maxNumLaps * fuelPerLap)
 
   return ({
-    numLaps,
+    maxNumLaps,
     raceFuel,
   })
 }
