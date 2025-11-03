@@ -1,4 +1,6 @@
 const express = require('express')
+const cors = require('cors')
+
 const {
   calculateFuelForRace,
 } = require('./calculation.cjs')
@@ -6,6 +8,11 @@ const {
 const app = express()
 const port = 3000
 
+app.use(cors({
+  origin: ['http://localhost:5173', 'http://localhost:3000'],
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type'],
+}))
 app.use(express.json())
 
 app.post('/api/calculate-race-fuel', (req, res) => {
