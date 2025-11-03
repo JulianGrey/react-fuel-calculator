@@ -11,18 +11,18 @@ app.use(express.json())
 app.post('/api/calculate-race-fuel', (req, res) => {
   try {
     const {
-      fuelPerLap,
       lapDuration,
+      lapFuel,
       raceDuration,
     } = req.body;
 
-    if (!fuelPerLap || !lapDuration || !raceDuration ) {
+    if (!lapDuration || !lapFuel || !raceDuration ) {
       return res.status(400).json({
-        error: 'Missing required fields: fuelPerLap, lapDuration, raceDuration'
+        error: 'Missing required fields: lapDuration, lapFuel, raceDuration'
       })
     }
 
-    const fuelRequired = calculateFuelForRace(fuelPerLap, lapDuration, raceDuration)
+    const fuelRequired = calculateFuelForRace(lapDuration, lapFuel, raceDuration)
 
     res.json({ fuelRequired })
   } catch (error) {
