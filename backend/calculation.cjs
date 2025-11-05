@@ -1,14 +1,13 @@
 /**
  * @typedef {Object} RaceDuration
- * @property {number} [raceHours=0]
- * @property {number} [raceMinutes=0]
- * @property {number} [raceSeconds=0]
+ * @property {number} [raceTimeHours=0]
+ * @property {number} [raceTimeMinutes=0]
  */
 
 /**
  * @typedef {Object} LapDuration
- * @property {number} [lapMinutes=0]
- * @property {number} [lapSeconds=0]
+ * @property {number} [lapTimeMinutes=0]
+ * @property {number} [lapTimeSeconds=0]
  */
 
 /**
@@ -25,11 +24,11 @@ function calculateFuelForRace(
   raceDuration,
   lapEnergy = 0,
 ) {
-  const { lapMinutes = 0, lapSeconds = 0 } = lapDuration
-  const { raceHours = 0, raceMinutes = 0, raceSeconds = 0 } = raceDuration
+  const { lapTimeMinutes = 0, lapTimeSeconds = 0 } = lapDuration
+  const { raceTimeHours = 0, raceTimeMinutes = 0 } = raceDuration
 
-  const duration = (raceHours * 3600) + (raceMinutes * 60) + raceSeconds
-  const lapTime = (lapMinutes * 60) + lapSeconds
+  const duration = (raceTimeHours * 3600) + (raceTimeMinutes * 60)
+  const lapTime = (lapTimeMinutes * 60) + lapTimeSeconds
   const maxNumLaps = Math.ceil(duration / lapTime)
   const raceEnergy = !!lapEnergy ? parseFloat((maxNumLaps * lapEnergy).toFixed(3)) : undefined
   const raceFuel = parseFloat((maxNumLaps * lapFuel).toFixed(3))
