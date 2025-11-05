@@ -26,7 +26,7 @@ export default function Calculator() {
   }
 
   return (
-    <div className='calculator'>
+    <div className={styles['calculator']}>
       <form action={calculateFuel}>
         <div className='form-row'>
           <label htmlFor='lap-time-minutes'>Lap time (minutes)</label>
