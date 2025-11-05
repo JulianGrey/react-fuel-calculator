@@ -28,7 +28,7 @@ function calculateFuelForRace(
   const { raceTimeHours = 0, raceTimeMinutes = 0 } = raceDuration
 
   const duration = (raceTimeHours * 3600) + (raceTimeMinutes * 60)
-  const lapTime = (lapTimeMinutes * 60) + lapTimeSeconds
+  const lapTime = (lapTimeMinutes * 60) + parseInt(lapTimeSeconds)
   const maxNumLaps = Math.ceil(duration / lapTime)
   const raceEnergy = !!lapEnergy ? parseFloat((maxNumLaps * lapEnergy).toFixed(3)) : undefined
   const raceFuel = parseFloat((maxNumLaps * lapFuel).toFixed(3))
