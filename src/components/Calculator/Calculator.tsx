@@ -1,9 +1,14 @@
+import { type FormEvent, useState } from 'react'
 import styles from './Calculator.module.scss'
-
 import { calculate } from '../../services/calculate'
 
 export default function Calculator() {
-  async function calculateFuel(formData: FormData) {
+  const [result, setResult] = useState({})
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event?.preventDefault()
+    const formData = new FormData(event.currentTarget)
+
     const lapEnergy = formData.get('lap-energy')
     const lapFuel = formData.get('lap-fuel')
     const lapTimeMinutes = formData.get('lap-time-minutes')
@@ -20,6 +25,7 @@ export default function Calculator() {
 
     try {
       const data = await calculate(payload)
+      setResult(data)
     } catch (error) {
       console.error('Error', error)
     }
@@ -27,7 +33,7 @@ export default function Calculator() {
 
   return (
     <div className={styles['calculator']}>
-      <form action={calculateFuel}>
+      <form onSubmit={handleSubmit}>
         <div className='form-row'>
           <label htmlFor='lap-time-minutes'>Lap time (minutes)</label>
           <input name='lap-time-minutes' type='number' />
