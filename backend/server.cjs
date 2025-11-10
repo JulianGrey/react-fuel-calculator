@@ -37,9 +37,9 @@ app.post('/api/calculate-race-fuel', (req, res) => {
       })
     }
 
-    const fuelRequired = calculateFuelForRace(lapDuration, lapFuel, raceDuration, lapEnergy)
+    const fuelData = calculateFuelForRace(lapDuration, lapFuel, raceDuration, lapEnergy)
 
-    res.json({ fuelRequired })
+    res.json({ fuelData })
   } catch (error) {
     res.status(500).json({ error: 'Internal server error' })
   }
