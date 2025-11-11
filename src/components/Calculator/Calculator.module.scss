@@ -1,1 +1,13 @@
-.calculator {}
+.calculator {
+  .form-row, .label {
+    display: flex;
+  }
+
+  .label {
+    width: 90px;
+  }
+
+  input {
+    width: 60px;
+  }
+}

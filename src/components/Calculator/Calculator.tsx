@@ -35,52 +35,51 @@ export default function Calculator() {
   return (
     <div className={styles['calculator']}>
       <form onSubmit={handleSubmit}>
-        <div className='form-row'>
-          <label htmlFor='lap-time-minutes'>Lap time (minutes)</label>
+        <div className={styles['form-row']}>
+          <span className={styles['label']}>Lap time:</span>
           <input
             name='lap-time-minutes'
             type='number'
+            placeholder='mins'
             min='0'
             max='59'
           />
-        </div>
-        <div className='form-row'>
-          <label htmlFor='lap-time-seconds'>Lap time (seconds)</label>
           <input
             name='lap-time-seconds'
             type='number'
+            placeholder='secs'
             min='0'
             max='59'
+            step='any'
           />
         </div>
-        <div className='form-row'>
-          <label htmlFor='race-time-hours'>Race time (hours)</label>
+        <div className={styles['form-row']}>
+          <span className={styles['label']}>Race time:</span>
           <input
             name='race-time-hours'
             type='number'
+            placeholder='hours'
             min='0'
             max='24'
           />
-        </div>
-        <div className='form-row'>
-          <label htmlFor='race-time-minutes'>Race time (minutes)</label>
           <input
             name='race-time-minutes'
             type='number'
+            placeholder='mins'
             min='0'
             max='59'
           />
         </div>
-        <div className='form-row'>
-          <label htmlFor='lap-fuel'>Lap fuel</label>
+        <div className={styles['form-row']}>
+          <span className={styles['label']}>Lap fuel:</span>
           <input
             name='lap-fuel'
             type='number'
             step='any'
           />
         </div>
-        <div className='form-row'>
-          <label htmlFor='lap-energy'>Lap energy</label>
+        <div className={styles['form-row']}>
+          <span className={styles['label']}>Lap energy:</span>
           <input
             name='lap-energy'
             type='number'
@@ -92,7 +91,7 @@ export default function Calculator() {
       {result && (
         <div className='results'>
           <div className='max-number-of-laps'>
-            <div>Max laps: { result.maxNumLaps }</div>
+            <div>Max laps (covered by fuel): { result.maxNumLaps }</div>
           </div>
           <div className='fuel-required'>
             <div>Fuel Required: { result.raceFuel }</div>
